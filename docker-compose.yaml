@@ -38,29 +38,15 @@ services:
     volumes:
       - /:/host:ro,rslave
 
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest  
-    container_name: cadvisor
-    ports:
-      - 8080:8080
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
-    devices:
-      - /dev/kmsg
-    privileged: true
-    restart: unless-stopped
-
   web_service:
+    build: ./express_app
     image: express_basics_image
     container_name: web_service_container
     ports: 
       - 8181:8181
 
   fake_client:
+    build: ./fake_client
     image: fake_client_image
     container_name: fake_client_container
 
