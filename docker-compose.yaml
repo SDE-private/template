@@ -1,0 +1,67 @@
+version: '3'
+
+volumes:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+    
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.37.9
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    command: "--config.file=/etc/prometheus/prometheus.yaml"
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+      - prometheus-data:/prometheus #fore è da mettere 'prometheus-data' al posto di './data'
+    restart: unless-stopped
+        
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command: "--path.rootfs=/host"
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - /:/host:ro,rslave
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest  
+    container_name: cadvisor
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    privileged: true
+    restart: unless-stopped
+
+  web_service:
+    image: express_basics_image
+    container_name: web_service_container
+    ports: 
+      - 8181:8181
+
+  fake_client:
+    image: fake_client_image
+    container_name: fake_client_container
+
+
