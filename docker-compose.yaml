@@ -17,7 +17,7 @@ services:
     command: "--config.file=/etc/prometheus/prometheus.yaml"
     volumes:
       - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
-      - prometheus-data:/prometheus #fore è da mettere 'prometheus-data' al posto di './data'
+      - ./volumes/monitoring_prometheus-data:/prometheus #fore è da mettere 'prometheus-data' al posto di './data'
     restart: unless-stopped
         
   grafana:
@@ -26,7 +26,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - grafana-data:/var/lib/grafana
+      - ./volumes/monitoring_grafana-data:/var/lib/grafana
     restart: unless-stopped
 
   node_exporter:
