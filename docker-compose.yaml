@@ -25,7 +25,7 @@ services:
     container_name: grafana
     ports:
       - 3000:3000
-    user: "472" # ID dell'utente "grafana"
+    user: "472:472" # ID dell'utente "grafana"
     volumes:
       - ./volumes/grafana-data:/var/lib/grafana
     restart: unless-stopped
