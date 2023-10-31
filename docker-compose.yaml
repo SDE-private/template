@@ -1,10 +1,8 @@
 version: '3'
 
 volumes:
-  prometheus-data:
-    driver: local
-  grafana-data:
-    driver: local
+
+  prometheus-data: {}
 
     
 services:
@@ -18,17 +16,17 @@ services:
     volumes:
       - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
       - ./volumes/prometheus-data:/prometheus #fore è da mettere 'prometheus-data' al posto di './data'
-    restart: unless-stopped
+    # restart: unless-stopped
         
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
     ports:
       - 3000:3000
-    user: "472:472" # ID dell'utente "grafana"
+    user: '0'
     volumes:
       - ./volumes/grafana-data:/var/lib/grafana
-    restart: unless-stopped
+    # restart: unless-stopped
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -46,9 +44,9 @@ services:
     ports: 
       - 8181:8181
 
-  fake_client:
-    build: ./fake_client
-    image: fake_client_image
-    container_name: fake_client_container
+  # fake_client:
+  #   build: ./fake_client
+  #   image: fake_client_image
+  #   container_name: fake_client_container
 
 
