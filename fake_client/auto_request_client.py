@@ -1,18 +1,33 @@
-import requests
+import threading
 import random
+import requests
 import time
+import logging
+
+# Configurazione del logger
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 URLS = ['http://web_service_container:8181/', 'http://web_service_container:8181/hello', 'http://web_service_container:8181/delayed']
 
-while True:
-    for url in URLS:
+def send_requests(url):
+    logger = logging.getLogger(url)
+    while True:
         try:
-            # Effettua la richiesta
             response = requests.get(url)
-            print(f"{url}  {response.status_code}")
+            logger.info(f"{url} {response.status_code}")
         except requests.exceptions.RequestException as e:
-            print(e)
-    
-    # Aspetta un tempo casuale tra 0 e 500 millisecondi
-    s = random.randint(0, 500) / 1000
-    time.sleep(s)
+            logger.error(f"Error while fetching {url}: {e}")
+
+        # Aspetta un tempo casuale tra 0 e 500 millisecondi
+        s = random.randint(0, 500) / 1000
+        time.sleep(s)
+
+if __name__ == "__main__":
+    threads = []
+    for url in URLS:
+        thread = threading.Thread(target=send_requests, args=(url,))
+        threads.append(thread)
+        thread.start()
+
+    for thread in threads:
+        thread.join()
