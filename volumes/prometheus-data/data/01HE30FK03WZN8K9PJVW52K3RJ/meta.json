@@ -1,0 +1,17 @@
+{
+	"ulid": "01HE30FK03WZN8K9PJVW52K3RJ",
+	"minTime": 1698749939838,
+	"maxTime": 1698753600000,
+	"stats": {
+		"numSamples": 304627,
+		"numSeries": 1430,
+		"numChunks": 4071
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HE30FK03WZN8K9PJVW52K3RJ"
+		]
+	},
+	"version": 1
+}
