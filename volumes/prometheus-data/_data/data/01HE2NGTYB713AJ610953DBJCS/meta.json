@@ -1,0 +1,17 @@
+{
+	"ulid": "01HE2NGTYB713AJ610953DBJCS",
+	"minTime": 1698590440123,
+	"maxTime": 1698595200000,
+	"stats": {
+		"numSamples": 1645827,
+		"numSeries": 4120,
+		"numChunks": 16597
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HE2NGTYB713AJ610953DBJCS"
+		]
+	},
+	"version": 1
+}
