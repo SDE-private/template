@@ -19,7 +19,7 @@ services:
     volumes:
       - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
       - ./volumes/prometheus-data:/prometheus #fore è da mettere 'prometheus-data' al posto di './data'
-    # restart: unless-stopped
+    restart: unless-stopped
         
   grafana:
     image: grafana/grafana-oss:latest
@@ -29,7 +29,7 @@ services:
     user: "0" # ID dell'utente "grafana"
     volumes:
       - ./volumes/grafana-data:/var/lib/grafana
-    # restart: unless-stopped
+    restart: unless-stopped
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -51,4 +51,3 @@ services:
     build: ./fake_client
     image: fake_client_image
     container_name: sde-fake_client_container
-
