@@ -1,0 +1,17 @@
+{
+	"ulid": "01HE2NASGHZY1831HQ684EVEJ7",
+	"minTime": 1698689452513,
+	"maxTime": 1698696000000,
+	"stats": {
+		"numSamples": 7381,
+		"numSeries": 1248,
+		"numChunks": 1248
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HE2NASGHZY1831HQ684EVEJ7"
+		]
+	},
+	"version": 1
+}
