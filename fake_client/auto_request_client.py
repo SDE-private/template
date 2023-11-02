@@ -14,7 +14,7 @@ def send_requests(url):
     while True:
         try:
             response = requests.get(url)
-            logger.info(f"{url} {response.status_code}")
+            # logger.info(f"{url} {response.status_code}")
         except requests.exceptions.RequestException as e:
             logger.error(f"Error while fetching {url}: {e}")
 
