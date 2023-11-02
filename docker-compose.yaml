@@ -12,7 +12,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.37.9
     container_name: sde-prometheus
-    user: root
+    user: "1000:1000"
     ports:
       - 9090:9090
     command: '--config.file=/etc/prometheus/prometheus.yaml'
@@ -26,7 +26,7 @@ services:
     container_name: sde-grafana
     ports:
       - 3000:3000
-    user: "0" # ID dell'utente "grafana"
+    user: "1000:1000"
     volumes:
       - ./volumes/grafana-data:/var/lib/grafana
     restart: unless-stopped
