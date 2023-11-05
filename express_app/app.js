@@ -9,7 +9,7 @@ var promClient = require('prom-client');  // Importa prom-client
 const responseTimeMetric = new promClient.Histogram({
   name: 'http_request_duration_seconds',
   help: 'Duration of HTTP requests in seconds',
-  labelNames: ['method', 'path'],
+  labelNames: ['method', 'path', 'response_code'],
 });
 
 var indexRouter = require('./routes/index');
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
   const end = responseTimeMetric.startTimer();
   res.on('finish', () => {
-    end({ method: req.method, path: req.path });
+    end({ method: req.method, path: req.path, response_code: res.statusCode });
   });
   next();
 });
