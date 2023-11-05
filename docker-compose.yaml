@@ -12,7 +12,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.37.9
     container_name: sde-prometheus
-    user: "1000:1000"
+    user: "0"
     ports:
       - 9090:9090
     command: '--config.file=/etc/prometheus/prometheus.yaml'
