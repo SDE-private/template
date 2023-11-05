@@ -7,7 +7,12 @@ import logging
 # Configurazione del logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-URLS = ['http://sde-web_service_container:8181/', 'http://sde-web_service_container:8181/hello', 'http://sde-web_service_container:8181/delayed']
+URLS = [
+    'http://sde-web_service_container:8181/',
+    'http://sde-web_service_container:8181/hello',
+    'http://sde-web_service_container:8181/delayed'
+    'http://sde-web_service_container:8181/404'
+]
 
 def send_requests(url):
     logger = logging.getLogger(url)
