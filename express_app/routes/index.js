@@ -15,7 +15,7 @@ const bitcoinPriceMetric = new promClient.Gauge({
 
 const randomUserGauge = new promClient.Gauge({
   name: 'random_user',
-  help: 'Random user',
+  help: 'Counts the number of people with a specific gender',
   labelNames: ['gender', 'age'],
 });
 
@@ -45,8 +45,7 @@ debug("index.js loaded");
 /* GET home page. */
 router.get('/', function(req, res, next) {
   requestCounter.inc();
-  const locals = { title: 'Express' };
-  res.render('index', locals);
+  res.render('index', { title: 'Express' });
 });
 
 // hello page
@@ -87,10 +86,11 @@ router.get('/randomuser', async function (req, res, next) {
   const json = await response.json();
   const user = json.results[0];
   // randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
+  randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
   res.render('public', { title: 'Random User Age', data: JSON.stringify(user) });
 });
 
 getBitcoinPrice()
-// getRandomUser()
+getRandomUser()
 
 module.exports = router;
