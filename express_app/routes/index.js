@@ -2,6 +2,8 @@ var express = require('express');
 var debug = require('debug')('express-app:server');
 var promClient = require('prom-client');
 var fetch = require('node-fetch');
+const crypto = require('crypto');
+
 
 const delay = 30;
 
@@ -89,6 +91,28 @@ router.get('/randomuser', async function (req, res, next) {
   const user = json.results[0];
   randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
   res.render('public', { title: 'Random User Age', data: JSON.stringify(user) });
+});
+
+router.get('/increase-cpu-load', (req, res) => {
+  // Esegui un calcolo intensivo per 10 secondi
+  const endTime = Date.now() + 10000; // 10 secondi
+  while (Date.now() < endTime) {
+    // Calcolo intensivo (es. operazioni matematiche pesanti)
+    Math.random() * Math.random();
+    const randomString = Math.random().toString();
+    crypto.createHash('sha256').update(randomString).digest('hex');
+  }
+
+  res.send('Carico CPU aumentato per 10 secondi');
+});
+
+let leakedArray = [];
+router.get('/memory-leak', (req, res) => {
+  // doesn't really seem to do anything
+  // add 100k elements to the array on each request
+  leakedArray.push(new Array(100000).fill('leak'));
+
+  res.send('Created memory leak. The array now has ' + leakedArray.length + ' elements in it.');
 });
 
 getBitcoinPrice()
