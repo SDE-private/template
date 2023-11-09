@@ -3,6 +3,8 @@ var debug = require('debug')('express-app:server');
 var promClient = require('prom-client');
 var fetch = require('node-fetch');
 
+const delay = 30;
+
 const requestCounter = new promClient.Counter({
   name: 'homepage_request_counter',
   help: 'Total number of requests on the homepage',
@@ -20,12 +22,12 @@ const randomUserGauge = new promClient.Gauge({
 });
 
 
-async function getBitcoinPrice(repeat = true) {
+async function getBitcoinPrice() {
   const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
   const json = await response.json();
   const price = json.bpi.EUR.rate_float;
   bitcoinPriceMetric.set(price);
-  setTimeout(getBitcoinPrice, 120 * 1000);
+  setTimeout(getBitcoinPrice, delay * 1000);
 }
 
 async function getRandomUser() {
@@ -33,7 +35,7 @@ async function getRandomUser() {
   const json = await response.json();
   const user = json.results[0];
   randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
-  setTimeout(getRandomUser, 120 * 1000);
+  setTimeout(getRandomUser, delay * 1000);
 }
 
 
@@ -85,7 +87,6 @@ router.get('/randomuser', async function (req, res, next) {
   const response = await fetch('https://randomuser.me/api/');
   const json = await response.json();
   const user = json.results[0];
-  // randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
   randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
   res.render('public', { title: 'Random User Age', data: JSON.stringify(user) });
 });
