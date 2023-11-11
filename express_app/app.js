@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var promClient = require('prom-client');  // Importa prom-client
-const metrics = require("./metrics.js");
+const metrics = require("./metrics");
 
 var indexRouter = require('./routes/index');
 
