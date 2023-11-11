@@ -25,4 +25,11 @@ app.use(middlewares.store_request_info);
 app.use(middlewares.four_0_four);
 app.use(middlewares.errors_handler);
 
+// define recurrent jobs
+const scraper = require("./scraper");
+setInterval(() => {
+  scraper.getBitcoinPrice();
+  scraper.getRandomUser();
+}, 30 * 1000);
+
 module.exports = app;
