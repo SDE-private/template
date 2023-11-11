@@ -4,13 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var promClient = require('prom-client');  // Importa prom-client
-
-// Crea un istanza di un istogramma per registrare la durata delle richieste HTTP
-const responseTimeMetric = new promClient.Histogram({
-  name: 'http_request_duration_seconds',
-  help: 'Duration of HTTP requests in seconds',
-  labelNames: ['method', 'path', 'response_code'],
-});
+const metrics = require("./metrics.js");
 
 var indexRouter = require('./routes/index');
 
@@ -31,7 +25,7 @@ app.use('/app', express.static('frontend'))
 // Usa il middleware per registrare le metriche per ogni richiesta
 // Questo è un middleware Express.js che viene eseguito per ogni richiesta HTTP ricevuta dal tuo server
 app.use((req, res, next) => {
-  const end = responseTimeMetric.startTimer();
+  const end = metrics.responseTimeMetric.startTimer();
   res.on('finish', () => {
     end({ method: req.method, path: req.path, response_code: res.statusCode });
   });

@@ -3,32 +3,16 @@ var debug = require('debug')('express-app:server');
 var promClient = require('prom-client');
 var fetch = require('node-fetch');
 const crypto = require('crypto');
-
+const metrics = require("../metrics");
 
 const delay = 30;
-
-const requestCounter = new promClient.Counter({
-  name: 'homepage_request_counter',
-  help: 'Total number of requests on the homepage',
-});
-
-const bitcoinPriceMetric = new promClient.Gauge({
-  name: 'bitcoin_price_eur',
-  help: 'Current price of Bitcoin in EUR',
-});
-
-const randomUserGauge = new promClient.Gauge({
-  name: 'random_user',
-  help: 'Counts the number of people with a specific gender',
-  labelNames: ['gender', 'age'],
-});
 
 
 async function getBitcoinPrice() {
   const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
   const json = await response.json();
   const price = json.bpi.EUR.rate_float;
-  bitcoinPriceMetric.set(price);
+  metrics.bitcoinPriceMetric.set(price);
   setTimeout(getBitcoinPrice, delay * 1000);
 }
 
@@ -36,7 +20,7 @@ async function getRandomUser() {
   const response = await fetch('https://randomuser.me/api/');
   const json = await response.json();
   const user = json.results[0];
-  randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
+  metrics.randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
   setTimeout(getRandomUser, delay * 1000);
 }
 
@@ -48,7 +32,7 @@ debug("index.js loaded");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  requestCounter.inc();
+  metrics.requestCounter.inc();
   res.render('index', { title: 'Express' });
 });
 
@@ -81,7 +65,7 @@ router.get("/bitcoin", async function (req, res, next) {
   const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
   const json = await response.json();
   const price = json.bpi.EUR.rate_float;
-  bitcoinPriceMetric.set(price);
+  metrics.bitcoinPriceMetric.set(price);
   res.render('public', { title: 'Bitcoin Price', data: price });
 });
 
