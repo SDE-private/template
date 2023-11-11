@@ -1,10 +1,8 @@
 const express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const path = require('path');
+const logger = require('morgan');
 const middlewares = require("./routes/middlewares");
-
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 
 const app = express();
 
@@ -16,17 +14,15 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/app', express.static('frontend'))
+
+// routers
+app.use('/', indexRouter);
 
 // custom middlewares
 app.use(middlewares.store_request_info);
 app.use(middlewares.four_0_four);
 app.use(middlewares.errors_handler);
-
-// routers
-app.use('/', indexRouter);
-
 
 module.exports = app;

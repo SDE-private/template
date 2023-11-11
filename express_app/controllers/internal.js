@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const metrics = require("../metrics");
+const debug = require('debug')('express-app:server');
 
 const delay = 30;
 
