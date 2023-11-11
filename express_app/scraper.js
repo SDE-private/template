@@ -6,6 +6,7 @@ const getBitcoinPrice = async () => {
   const json = await response.json();
   const price = json.bpi.EUR.rate_float;
   metrics.bitcoinPriceMetric.set(price);
+  return price;
 };
 
 const getRandomUser = async () => {
@@ -13,6 +14,7 @@ const getRandomUser = async () => {
   const json = await response.json();
   const user = json.results[0];
   metrics.randomUserGauge.labels(user['gender'], user['dob']['age'].toString()).inc();
+  return user;
 };
 
 module.exports = {
