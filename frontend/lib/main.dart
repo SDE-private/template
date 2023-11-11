@@ -9,8 +9,9 @@ class FrontendSDE extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          colorSchemeSeed: const Color(0xff6750a4), useMaterial3: true),
+      theme: ThemeData.light(),
+      darkTheme:  ThemeData.dark(),
+      themeMode: ThemeMode.light,
       home: const HomeView(),
       debugShowCheckedModeBanner: false,
     );

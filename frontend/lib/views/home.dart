@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/tabs/wrapper.dart';
 
-import '../tabs/wrapper.dart';
+import '../tabs/index.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -24,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Web server playground"),
-
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SafeArea(
         child: Row(
@@ -57,14 +58,22 @@ class _HomeViewState extends State<HomeView> {
               ],
             ),
             const VerticalDivider(thickness: 1, width: 1),
-            Expanded(
-              child: Center(
-                child: tabs[_selectedIndex]
-              ),
-            )
+            TabViewWrapper(to_show: tabs[_selectedIndex])
           ],
         ),
       ),
+      // bottomNavigationBar: BottomAppBar(
+      //   shape: const CircularNotchedRectangle(),
+      //   child: Container(height: 50.0),
+      // ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => setState(() {
+      //
+      //   }),
+      //   tooltip: 'Increment Counter',
+      //   child: const Icon(Icons.add),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
   }
 }

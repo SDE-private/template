@@ -26,6 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/app', express.static('frontend'))
+
 // Usa il middleware per registrare le metriche per ogni richiesta
 // Questo è un middleware Express.js che viene eseguito per ogni richiesta HTTP ricevuta dal tuo server
 app.use((req, res, next) => {
