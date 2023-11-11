@@ -15,9 +15,9 @@ class _HomeViewState extends State<HomeView> {
   NavigationRailLabelType labelType = NavigationRailLabelType.all;
   double groupAlignment = 0.0;
   final tabs = [
-    const FirstTab(),
-    const SecondTab(),
-    const ThirdTab()
+    HashEverything(),
+    SecondTab(),
+    ThirdTab()
   ];
 
   @override
@@ -25,7 +25,6 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Web server playground"),
-        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SafeArea(
         child: Row(
@@ -43,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
                 NavigationRailDestination(
                   icon: Icon(Icons.favorite_border),
                   selectedIcon: Icon(Icons.favorite),
-                  label: Text('First'),
+                  label: Text('Hash'),
                 ),
                 NavigationRailDestination(
                   icon: Icon(Icons.bookmark_border),
@@ -62,18 +61,6 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   shape: const CircularNotchedRectangle(),
-      //   child: Container(height: 50.0),
-      // ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () => setState(() {
-      //
-      //   }),
-      //   tooltip: 'Increment Counter',
-      //   child: const Icon(Icons.add),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
   }
 }

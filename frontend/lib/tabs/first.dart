@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/tabs/tab_interface.dart';
 
-class FirstTab extends StatefulWidget {
-  const FirstTab({super.key});
+class HashEverything extends StatefulWidget implements TabInterface {
+  final controller = TextEditingController();
+  HashEverything({super.key});
 
   @override
-  State<FirstTab> createState() => _FirstTabState();
+  State<HashEverything> createState() => _HashEverythingState();
+
+  @override
+  String get_uri() => "increase-cpu-load";
+
+  @override
+  Map<String, String> get_params() => {
+    "string": controller.value.text
+  };
 }
 
-class _FirstTabState extends State<FirstTab> {
+class _HashEverythingState extends State<HashEverything> {
   @override
   Widget build(BuildContext context) {
-    return const Text("ciao 1");
+    return TextField(
+      controller: widget.controller,
+      decoration: const InputDecoration(
+        border: UnderlineInputBorder(),
+        labelText: 'Enter something to hash',
+      ),
+    );
   }
 }
