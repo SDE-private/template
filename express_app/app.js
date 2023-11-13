@@ -18,11 +18,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/app', express.static('frontend'))
 
+
+// store requests info middlewares
+app.use(middlewares.store_request_info);
+
 // routers
 app.use('/', indexRouter);
 
-// custom middlewares
-app.use(middlewares.store_request_info);
+// 404 and errors middlewares
 app.use(middlewares.four_0_four);
 app.use(middlewares.errors_handler);
 
