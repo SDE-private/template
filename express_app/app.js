@@ -23,7 +23,7 @@ app.use('/app', express.static('frontend'))
 app.use(middlewares.store_request_info);
 
 // routers
-app.use('/', indexRouter); // TODO: put /api
+app.use('/api', indexRouter);
 
 // 404 and errors middlewares
 app.use(middlewares.four_0_four);
