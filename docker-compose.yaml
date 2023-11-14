@@ -47,7 +47,12 @@ services:
     ports: 
       - 8181:8181
 
-  fake_client:
-    build: ./fake_client
-    image: fake_client_image
-    container_name: sde-fake_client_container
+  low_requests_fake_client:
+    build: ./fake_client/low_requests_fake_client
+    image: low_requests_fake_client_image
+    container_name: sde-low_requests_fake_client_container
+
+  high_requests_fake_client:
+    build: ./fake_client/high_requests_fake_client
+    image: high_requests_fake_client_image
+    container_name: sde-high_requests_fake_client_container
