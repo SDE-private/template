@@ -3,7 +3,8 @@ const path = require('path');
 const logger = require('morgan');
 const cors = require("cors");
 const middlewares = require("./routes/middlewares");
-const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/index');
+const promClient = require('prom-client');
 const app = express();
 
 // view engine setup
@@ -23,7 +24,13 @@ app.use('/app', express.static('frontend'))
 app.use(middlewares.store_request_info);
 
 // routers
-app.use('/api', indexRouter);
+app.use('/api', apiRouter);
+
+// endpoint per le metriche
+app.get("/metrics", async (req, res) => {
+  res.set('Content-Type', promClient.register.contentType);
+  res.send(await promClient.register.metrics());
+});
 
 // 404 and errors middlewares
 app.use(middlewares.four_0_four);
