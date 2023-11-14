@@ -28,15 +28,10 @@ const delayed = async (req, res) => {
 const cpu_burst = (req, res) => {
   const to_hash = req.query.string || "random_string";
   console.log(to_hash);
-  // Esegui un calcolo intensivo per 10 secondi
-  const endTime = Date.now() + 10000; // 10 secondi
-  while (Date.now() < endTime) {
-    // Calcolo intensivo (es. operazioni matematiche pesanti)
-    Math.random() * Math.random();
-    crypto.createHash('sha256').update(to_hash).digest('hex');
-  }
-
-  res.send('Carico CPU aumentato per 10 secondi');
+  crypto.pbkdf2('secret', 'salt', 1000000, 512, 'sha512', (err, dk) => {
+    console.log(dk);
+    res.send('Carico CPU aumentato per 10 secondi');
+  });
 };
 
 
