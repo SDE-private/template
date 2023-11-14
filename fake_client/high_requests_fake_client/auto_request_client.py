@@ -10,6 +10,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 URLS = [
     'http://sde-web_service_container:8181/',
     'http://sde-web_service_container:8181/',
+    'http://sde-web_service_container:8181/',
+    'http://sde-web_service_container:8181/hello',
     'http://sde-web_service_container:8181/hello',
     'http://sde-web_service_container:8181/delayed',
     'http://sde-web_service_container:8181/404'
