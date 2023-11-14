@@ -71,7 +71,6 @@ class _TabViewWrapperState extends State<TabViewWrapper> {
     final url = Uri.http("localhost:8181", uri, query_params);
     for (var i = 0; i < _currentSliderValue.toInt(); i++) {
       http.get(url);
-      print("done");
     }
   }
 }
