@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../singletons/recurrent_calls.dart';
 
@@ -23,9 +24,12 @@ class _ExamplesViewState extends State<ExamplesView> {
             width: MediaQuery.of(context).size.width * 0.5,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: ENDPOINTS.map(
-                (e) => make_row(e)
-              ).toList()
+              children: List<Widget>.from([
+                Text("Simple APIs", style: Theme.of(context).textTheme.headlineLarge),
+                Text("Specify the number of requests per second to these endpoints.", style: Theme.of(context).textTheme.labelLarge),
+                SizedBox(height: 100)
+              ]) + List<Widget>.from(ENDPOINTS.map((e) => make_row(e)).toList())
+
             ),
           )
         )
@@ -38,15 +42,17 @@ class _ExamplesViewState extends State<ExamplesView> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(endpoint.uri),
-        Slider(
-          value: endpoint.requests_per_second.toDouble(),
+        SfSlider(
           min: 0,
           max: 10,
-          divisions: 11,
-          label: endpoint.requests_per_second.toString(),
-          onChanged: (double value) {
+          stepSize: 1,
+          value: endpoint.requests_per_second,
+          thumbIcon: Center(
+            child: Text("${endpoint.requests_per_second}", style: Theme.of(context).textTheme.labelSmall!.apply(color: Theme.of(context).indicatorColor)),
+          ),
+          onChanged: (dynamic newValue) {
             setState(() {
-              endpoint.requests_per_second = value.toInt();
+              endpoint.requests_per_second = newValue;
             });
           },
         ),

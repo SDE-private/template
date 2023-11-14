@@ -11,7 +11,8 @@ class Endpoint {
 final List<Endpoint> ENDPOINTS = [
   Endpoint("/api/"),
   Endpoint("/api/hello"),
-  Endpoint("/api/delayed")
+  Endpoint("/api/delayed"),
+  Endpoint("/api/not_existing")
 ];
 
 class RecurrentCalls {

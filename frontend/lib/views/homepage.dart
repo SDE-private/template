@@ -23,7 +23,7 @@ class _HomepageViewState extends State<HomepageView> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              make_button("Examples", Icons.assignment, go_to_examples),
+              make_button("Examples", Icons.videogame_asset_rounded, go_to_examples),
               make_button("Exercises", Icons.assignment, go_to_exercises)
             ],
           ),
@@ -47,7 +47,7 @@ class _HomepageViewState extends State<HomepageView> {
   Widget make_button(String text, IconData icon, void Function() callback) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: SizedBox(
           height: double.infinity,
           child: ElevatedButton(
