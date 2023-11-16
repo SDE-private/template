@@ -28,9 +28,8 @@ const delayed = async (req, res) => {
 const cpu_burst = (req, res) => {
   const to_hash = req.query.string || "random_string";
   console.log(to_hash);
-  crypto.pbkdf2('secret', 'salt', 1000000, 512, 'sha512', (err, dk) => {
-    console.log(dk);
-    res.send('Carico CPU aumentato per 10 secondi');
+  crypto.pbkdf2('secret', 'salt', 10e5, 512, 'sha512', (err, dk) => {
+    res.send({});
   });
 };
 
@@ -39,9 +38,8 @@ let leakedArray = [];
 const memory_leak = (req, res) => {
   // doesn't really seem to do anything
   // add 100k elements to the array on each request
-  leakedArray.push(new Array(100000).fill('leak'));
-
-  res.send('Created memory leak. The array now has ' + leakedArray.length + ' elements in it.');
+  leakedArray.push(new Array(10e5).fill('leak'));
+  res.send({});
 };
 
 
