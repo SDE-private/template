@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/tabs/tab_interface.dart';
 
-class SecondTab extends StatefulWidget {
-  const SecondTab({super.key});
+class MemoryLeak extends StatefulWidget implements TabInterface {
+  final controller = TextEditingController();
+  MemoryLeak({super.key});
 
   @override
-  State<SecondTab> createState() => _SecondTabState();
+  State<MemoryLeak> createState() => _MemoryLeakState();
+
+  @override
+  String get_uri() => "memory-leak";
+
+  @override
+  Map<String, String> get_params() => {};
 }
 
-class _SecondTabState extends State<SecondTab> {
+class _MemoryLeakState extends State<MemoryLeak> {
   @override
   Widget build(BuildContext context) {
-    return const Text("ciao 2");
+    return TextField(
+      controller: widget.controller,
+      decoration: const InputDecoration(
+        border: UnderlineInputBorder(),
+        labelText: 'Enter something to hash',
+      ),
+    );
   }
 }

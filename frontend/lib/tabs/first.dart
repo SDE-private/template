@@ -9,7 +9,7 @@ class HashEverything extends StatefulWidget implements TabInterface {
   State<HashEverything> createState() => _HashEverythingState();
 
   @override
-  String get_uri() => "increase-cpu-load";
+  String get_uri() => "/api/increase-cpu-load";
 
   @override
   Map<String, String> get_params() => {

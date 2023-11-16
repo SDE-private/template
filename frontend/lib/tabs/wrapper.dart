@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/tabs/tab_interface.dart';
 import 'package:http/http.dart' as http;
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 
 class TabViewWrapper extends StatefulWidget {
@@ -23,7 +24,7 @@ class _TabViewWrapperState extends State<TabViewWrapper> {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
               child: Center(
                 child: widget.to_show
               ),
@@ -39,15 +40,17 @@ class _TabViewWrapperState extends State<TabViewWrapper> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Number of requests: ${_currentSliderValue.toInt()}"),
-                  Slider(
-                    value: _currentSliderValue,
+                  SfSlider(
                     min: 1,
-                    max: 100,
-                    divisions: 50,
-                    label: _currentSliderValue.round().toString(),
-                    onChanged: (double value) {
+                    max: 99,
+                    stepSize: 1,
+                    value: _currentSliderValue,
+                    thumbIcon: Center(
+                      child: Text("$_currentSliderValue", style: Theme.of(context).textTheme.labelSmall!.apply(color: Theme.of(context).indicatorColor)),
+                    ),
+                    onChanged: (dynamic newValue) {
                       setState(() {
-                        _currentSliderValue = value;
+                        _currentSliderValue = newValue;
                       });
                     },
                   ),
@@ -69,6 +72,7 @@ class _TabViewWrapperState extends State<TabViewWrapper> {
     final uri = form.get_uri();
     final query_params = form.get_params();
     final url = Uri.http("localhost:8181", uri, query_params);
+    print(url);
     for (var i = 0; i < _currentSliderValue.toInt(); i++) {
       http.get(url);
     }

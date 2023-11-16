@@ -16,8 +16,7 @@ class _PlaygroundViewState extends State<PlaygroundView> {
   double groupAlignment = 0.0;
   final tabs = [
     HashEverything(),
-    SecondTab(),
-    ThirdTab()
+    MemoryLeak()
   ];
 
   @override
