@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/app', express.static('frontend'))
-
+// app.disable('etag'); // disable 304 responses (caching)
 
 // store requests info middlewares
 app.use(middlewares.store_request_info);

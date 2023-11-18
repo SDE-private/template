@@ -6,7 +6,7 @@ const createError = require('http-errors');
 const store_request_info = (req, res, next) => {
   const end = metrics.responseTimeMetric.startTimer();
   res.on('finish', () => {
-    end({ method: req.method, path: req.path, response_code: res.statusCode });
+    end({ method: req.method, path: req.originalUrl, response_code: res.statusCode });
   });
   next();
 };
