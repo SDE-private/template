@@ -10,10 +10,16 @@ const bitcoinPriceMetric = new promClient.Gauge({
   help: 'Current price of Bitcoin in EUR',
 });
 
-const randomUserGauge = new promClient.Gauge({
-  name: 'random_user',
+const randomUserGender = new promClient.Counter({
+  name: 'random_user_gender',
   help: 'Counts the number of people with a specific gender',
-  labelNames: ['gender', 'age'],
+  labelNames: ['gender'],
+});
+
+const randomUserAge = new promClient.Histogram({
+  name: 'random_user_age',
+  help: 'Age of random users',
+  labelNames: ['range'],
 });
 
 // Crea un istanza di un istogramma per registrare la durata delle richieste HTTP
@@ -26,6 +32,7 @@ const responseTimeMetric = new promClient.Histogram({
 module.exports = {
   requestCounter,
   bitcoinPriceMetric,
-  randomUserGauge,
+  randomUserGender,
+  randomUserAge,
   responseTimeMetric
 }
