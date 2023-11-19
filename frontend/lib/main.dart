@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/singletons/global_snackbar.dart';
 import 'package:frontend/singletons/recurrent_calls.dart';
 import 'package:frontend/views/homepage.dart';
 
@@ -16,6 +17,7 @@ class FrontendSDE extends StatelessWidget {
       themeMode: ThemeMode.light,
       home: const HomepageView(),
       debugShowCheckedModeBanner: false,
+      scaffoldMessengerKey: GlobalSnackbar.key,
     );
   }
 }

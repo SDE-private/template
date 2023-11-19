@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/singletons/global_snackbar.dart';
 import 'package:frontend/tabs/tab_interface.dart';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -26,8 +27,11 @@ class _TabViewWrapperState extends State<TabViewWrapper> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
               child: Center(
-                child: widget.to_show
-              ),
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: widget.to_show
+                )
+              )
             )
           ),
           SizedBox(
@@ -76,5 +80,6 @@ class _TabViewWrapperState extends State<TabViewWrapper> {
     for (var i = 0; i < _currentSliderValue.toInt(); i++) {
       http.get(url);
     }
+    GlobalSnackbar.showSuccess("${_currentSliderValue.toInt()} requests done");
   }
 }

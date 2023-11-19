@@ -3,20 +3,20 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../singletons/recurrent_calls.dart';
 
-class ExamplesView extends StatefulWidget {
-  const ExamplesView({super.key});
+class ExercisesView extends StatefulWidget {
+  const ExercisesView({super.key});
 
   @override
-  State<ExamplesView> createState() => _ExamplesViewState();
+  State<ExercisesView> createState() => _ExercisesViewState();
 }
 
-class _ExamplesViewState extends State<ExamplesView> {
+class _ExercisesViewState extends State<ExercisesView> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Examples"),
+        title: const Text("Exercises"),
       ),
       body: SafeArea(
         child: Center(
@@ -27,7 +27,7 @@ class _ExamplesViewState extends State<ExamplesView> {
               children: List<Widget>.from([
                 Text("Simple APIs", style: Theme.of(context).textTheme.headlineLarge),
                 Text("Specify the number of requests per second to these endpoints.", style: Theme.of(context).textTheme.labelLarge),
-                SizedBox(height: 100)
+                const SizedBox(height: 100)
               ]) + List<Widget>.from(ENDPOINTS.map((e) => make_row(e)).toList())
 
             ),

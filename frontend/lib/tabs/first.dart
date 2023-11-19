@@ -20,12 +20,20 @@ class HashEverything extends StatefulWidget implements TabInterface {
 class _HashEverythingState extends State<HashEverything> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: widget.controller,
-      decoration: const InputDecoration(
-        border: UnderlineInputBorder(),
-        labelText: 'Enter something to hash',
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Hash everything", style: Theme.of(context).textTheme.headlineLarge),
+        Text("Specify a string to hash with pbkdf2", style: Theme.of(context).textTheme.labelLarge),
+        const SizedBox(height: 100),
+        TextField(
+          controller: widget.controller,
+          decoration: const InputDecoration(
+            border: UnderlineInputBorder(),
+            labelText: 'Enter something to hash',
+          ),
+        )
+      ]
     );
   }
 }

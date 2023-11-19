@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/views/examples.dart';
-import 'package:frontend/views/playground.dart';
+import 'package:frontend/views/exercises.dart';
+import 'package:frontend/views/assignment.dart';
 
 class HomepageView extends StatefulWidget {
   const HomepageView({super.key});
@@ -14,7 +14,7 @@ class _HomepageViewState extends State<HomepageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("web monitoring"),
+        title: const Text("Web Service Monitoring Playground"),
       ),
       body: SafeArea(
         child: Container(
@@ -23,8 +23,8 @@ class _HomepageViewState extends State<HomepageView> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              make_button("Examples", Icons.videogame_asset_rounded, go_to_examples),
-              make_button("Exercises", Icons.assignment, go_to_exercises)
+              make_button("Exercises", Icons.videogame_asset_rounded, go_to_examples),
+              make_button("Assignment", Icons.assignment, go_to_exercises)
             ],
           ),
         )
@@ -34,13 +34,13 @@ class _HomepageViewState extends State<HomepageView> {
 
   void go_to_examples() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const ExamplesView())
+        MaterialPageRoute(builder: (context) => const ExercisesView())
     );
   }
 
   void go_to_exercises() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const PlaygroundView())
+      MaterialPageRoute(builder: (context) => const AssignmentView())
     );
   }
 

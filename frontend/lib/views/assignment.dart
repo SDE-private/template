@@ -3,14 +3,14 @@ import 'package:frontend/tabs/wrapper.dart';
 
 import '../tabs/index.dart';
 
-class PlaygroundView extends StatefulWidget {
-  const PlaygroundView({super.key});
+class AssignmentView extends StatefulWidget {
+  const AssignmentView({super.key});
 
   @override
-  State<PlaygroundView> createState() => _PlaygroundViewState();
+  State<AssignmentView> createState() => _AssignmentViewState();
 }
 
-class _PlaygroundViewState extends State<PlaygroundView> {
+class _AssignmentViewState extends State<AssignmentView> {
   int _selectedIndex = 0;
   NavigationRailLabelType labelType = NavigationRailLabelType.all;
   double groupAlignment = 0.0;
@@ -23,7 +23,7 @@ class _PlaygroundViewState extends State<PlaygroundView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Web server playground"),
+        title: const Text("Assignment"),
       ),
       body: SafeArea(
         child: Row(
@@ -39,13 +39,11 @@ class _PlaygroundViewState extends State<PlaygroundView> {
               labelType: labelType,
               destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
-                  icon: Icon(Icons.favorite_border),
-                  selectedIcon: Icon(Icons.favorite),
+                  icon: Icon(Icons.tag),
                   label: Text('Hash'),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.bookmark_border),
-                  selectedIcon: Icon(Icons.book),
+                  icon: Icon(Icons.memory),
                   label: Text('Memory'),
                 ),
               ],
