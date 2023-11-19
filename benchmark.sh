@@ -1,11 +1,16 @@
 #!/bin/bash
 
+if ! command -v stress &> /dev/null; then
+    echo "Error: stress not installed."
+    exit 1
+fi
+
 # Funzione per eseguire un comando e inviare una notifica
 run_test() {
-  command=$1
-  description=$2
+  description=$1
+  command=$2
 
-  echo "Esecution of: description"
+  echo "Esecution of: $description"
   $command
   status=$?
 
@@ -19,8 +24,6 @@ run_test() {
 }
 
 # Esecuzione dei test
-# run_test "sysbench cpu --threads=6 --time=30 run" "CPU"
-run_test "sysbench memory --time=30 --memory-block-size=2G --threads=1 --memory-oper=write run" "RAM write"
-run_test "sysbench memory --time=30 --memory-block-size=2G --threads=1 --memory-oper=read run" "RAM read"
-# run_test "sysbench --test=fileio --file-total-size=50G prepare" "diskIO: setup"
-# run_test "sysbench --test=fileio --file-total-size=50G --file-test-mode=rndrw run" "diskIO: run"
+run_test "CPU" "stress --cpu 4 --timeout 60"
+run_test "RAM" "stress --vm 4 --vm-bytes 4092M --timeout 60"
+run_test "IO" "stress --io 4 --timeout 60"
