@@ -18,7 +18,7 @@ services:
     command: '--config.file=/etc/prometheus/prometheus.yaml'
     volumes:
       - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
-      - ./volumes/prometheus-data:/prometheus #fore è da mettere 'prometheus-data' al posto di './data'
+      - ./volumes/prometheus-data:/prometheus 
     restart: unless-stopped
         
   grafana:
