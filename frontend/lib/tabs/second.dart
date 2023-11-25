@@ -32,7 +32,7 @@ class _MemoryLeakState extends State<MemoryLeak> {
             controller: widget.controller,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
-              labelText: 'Enter the side (positive max 99999)',
+              labelText: 'Enter the side (positive max 999999)',
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly
