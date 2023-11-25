@@ -5,6 +5,16 @@ const requestCounter = new promClient.Counter({
   help: 'Total number of requests on the homepage',
 });
 
+const requestCounterHello = new promClient.Counter({
+  name: 'hello_request_counter',
+  help: 'Total number of requests on the hello api',
+});
+
+const requestCounterDelayed = new promClient.Counter({
+  name: 'delayed_request_counter',
+  help: 'Total number of requests on the delayed api',
+});
+
 const bitcoinPriceMetric = new promClient.Gauge({
   name: 'bitcoin_price_eur',
   help: 'Current price of Bitcoin in EUR',
@@ -31,6 +41,8 @@ const responseTimeMetric = new promClient.Histogram({
 
 module.exports = {
   requestCounter,
+  requestCounterHello,
+  requestCounterDelayed,
   bitcoinPriceMetric,
   randomUserGender,
   randomUserAge,

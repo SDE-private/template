@@ -12,11 +12,13 @@ const home = (req, res) => {
 
 const hello = (req, res) => {
   debug("Hello World!");
+  metrics.requestCounterHello.inc();
   res.render('hello', {title: 'Hello World!'});
 };
 
 const delayed = async (req, res) => {
   debug("Delayed response");
+  metrics.requestCounterDelayed.inc();
   //calcolo un delay casuale tra 0 e 1500 millisecondi
   let delay = Math.floor(Math.random() * 1500);
   //setTimeout fa in modo che la risposta venga inviata dopo i millisec specificati
