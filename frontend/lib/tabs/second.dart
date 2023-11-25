@@ -10,7 +10,7 @@ class MemoryLeak extends StatefulWidget implements TabInterface {
   State<MemoryLeak> createState() => _MemoryLeakState();
 
   @override
-  String get_uri() => "memory-leak";
+  String get_uri() => "/api/memory-leak";
 
   @override
   Map<String, String> get_params() => {
@@ -24,14 +24,15 @@ class _MemoryLeakState extends State<MemoryLeak> {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Random matrix", style: Theme.of(context).textTheme.headlineLarge),
-          Text("Enter the length of the side of the square matrix", style: Theme.of(context).textTheme.labelLarge),
+          Text("Random array", style: Theme.of(context).textTheme.headlineLarge),
+          Text("Enter the length of the array", style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 100),
           TextField(
+            maxLength: 4,
             controller: widget.controller,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
-              labelText: 'Enter the side',
+              labelText: 'Enter the side (positive max 9999)',
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly
