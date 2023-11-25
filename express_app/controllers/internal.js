@@ -40,7 +40,7 @@ let leakedArray = [];
 const memory_leak = (req, res) => {
   // doesn't really seem to do anything
   // add 100k elements to the array on each request
-  leakedArray.push(new Array(10e6).fill('leak'));
+  leakedArray.push(new Array(10e4).fill('leak'));
   res.send({});
 };
 
