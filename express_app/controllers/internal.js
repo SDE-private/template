@@ -30,7 +30,7 @@ const delayed = async (req, res) => {
 const cpu_burst = (req, res) => {
   const to_hash = req.query.string || "random_string";
   console.log(to_hash);
-  crypto.pbkdf2('secret', 'salt', 10e6, 512, 'sha512', (err, dk) => {
+  crypto.pbkdf2('secret', 'salt', 10e4, 512, 'sha512', (err, dk) => {
     res.send({});
   });
 };
