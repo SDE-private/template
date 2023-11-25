@@ -28,7 +28,7 @@ class _MemoryLeakState extends State<MemoryLeak> {
           Text("Enter the length of the array", style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 100),
           TextField(
-            maxLength: 5,
+            maxLength: 6,
             controller: widget.controller,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
