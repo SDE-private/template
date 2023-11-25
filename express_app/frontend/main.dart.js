@@ -75347,7 +75347,7 @@ Fv(){var s=t.N
 return A.aE(["side",this.c.a.a],s,s)}}
 A.NS.prototype={
 M(a){var s=null
-return A.h6(A.b([A.dO("Random array",s,s,s,A.P(a).p4.d,s,s),A.dO("Enter the length of the array",s,s,s,A.P(a).p4.as,s,s),B.jG,A.ao1(this.a.c,B.De,A.b([$.aru()],t.VS),4)],t.p),B.ae,B.dL,B.aB)}}
+return A.h6(A.b([A.dO("Random array",s,s,s,A.P(a).p4.d,s,s),A.dO("Enter the length of the array",s,s,s,A.P(a).p4.as,s,s),B.jG,A.ao1(this.a.c,B.De,A.b([$.aru()],t.VS),5)],t.p),B.ae,B.dL,B.aB)}}
 A.y_.prototype={
 ac(){return new A.Bv(B.k)}}
 A.Bv.prototype={
@@ -80242,7 +80242,7 @@ B.Dc=new A.jo("\ufffc",null,null,!0,!0,B.af)
 B.yE=new A.aU(B.l,1,B.y,-1)
 B.jZ=new A.hI(B.kA,B.yE)
 B.Dd=new A.n2(null,null,null,"Enter something to hash",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,B.jZ,!0,null,null,null)
-B.De=new A.n2(null,null,null,"Enter the side (positive max 9999)",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,B.jZ,!0,null,null,null)
+B.De=new A.n2(null,null,null,"Enter the side (positive max 99999)",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,B.jZ,!0,null,null,null)
 B.SV=new A.n2(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,!0,null,null,null)
 B.Bv=new A.dv(0.6,0.04,0.98,0.335)
 B.Dg=new A.e1(0.4,0.6,B.Bv)

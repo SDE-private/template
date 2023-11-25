@@ -28,11 +28,11 @@ class _MemoryLeakState extends State<MemoryLeak> {
           Text("Enter the length of the array", style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 100),
           TextField(
-            maxLength: 4,
+            maxLength: 5,
             controller: widget.controller,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
-              labelText: 'Enter the side (positive max 9999)',
+              labelText: 'Enter the side (positive max 99999)',
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly
