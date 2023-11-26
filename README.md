@@ -38,11 +38,11 @@ Here is a list of the services that will be available after running the commands
 
 Those images are pulled from Dockerhub.
 
-| Name | URL | Username | Password |
-| --- | --- | --- | --- |
-| Grafana | http://localhost:3000 | admin | password |
-| Prometheus | http://localhost:9090 | | |
-| Node Exporter | http://localhost:9100 | | |
+| Name | URL |
+| --- | --- |
+| Grafana | http://localhost:3000 |
+| Prometheus | http://localhost:9090 |
+| Node Exporter | http://localhost:9100 |
 <br/>
 
 ### Our web service
