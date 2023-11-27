@@ -39,6 +39,8 @@ services:
     restart: unless-stopped
     volumes:
       - /:/host:ro,rslave
+    ports:
+      - 9100:9100
 
   web_service:
     build: ./express_app
